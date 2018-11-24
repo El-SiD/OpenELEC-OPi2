@@ -82,7 +82,7 @@ make_host() {
 }
 
 makeinstall_host() {
-  make PYTHON_MODULES_INCLUDE="$HOST_INCDIR" \
+  make -j1 PYTHON_MODULES_INCLUDE="$HOST_INCDIR" \
        PYTHON_MODULES_LIB="$HOST_LIBDIR" \
        PYTHON_DISABLE_MODULES="$PY_DISABLED_MODULES" \
        install

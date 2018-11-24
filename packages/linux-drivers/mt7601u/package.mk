@@ -17,12 +17,13 @@
 ################################################################################
 
 PKG_NAME="mt7601u"
-PKG_VERSION="e65aed5"
+PKG_VERSION="28c7601"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/porjo/mt7601"
-PKG_URL="http://down.nu/packages/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_SITE="https://github.com/art567/mt7601usta"
+PKG_GIT_URL="https://github.com/art567/mt7601usta.git"
+PKG_GIT_BRANCH="master"
 PKG_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_PRIORITY="optional"
@@ -38,13 +39,16 @@ pre_make_target() {
 }
 
 make_target() {
-  sed -i '200s|.*LINUX_SRC.*|LINUX_SRC = '$(kernel_path)'|' src/Makefile
-  sed -i '203s|.*LINUX_SRC_MODULE.*|LINUX_SRC_MODULE = '$INSTALL'/lib/modules/'$(get_module_dir)'/kernel/drivers/net/wireless/|' src/Makefile
-  sed -i '204s|.*CROSS_COMPILE.*|CROSS_COMPILE = $(TARGET_PREFIX)|' src/Makefile
-  sed -i '205i ARCH = $(TARGET_ARCH)' src/Makefile
-  sed -i '206i export ARCH' src/Makefile
-  sed -i '207i export CROSS_COMPILE' src/Makefile
-  make -C src osdrv
+  sed -i '224s|.*LINUX_SRC.*|LINUX_SRC = '$(kernel_path)'|' src/Makefile
+  sed -i '227s|.*LINUX_SRC_MODULE.*|LINUX_SRC_MODULE = '$INSTALL'/lib/modules/'$(get_module_dir)'/kernel/drivers/net/wireless/|' src/Makefile
+  sed -i '228s|.*CROSS_COMPILE.*|CROSS_COMPILE = $(TARGET_PREFIX)|' src/Makefile
+#  sed -i '205i ARCH = $(TARGET_ARCH)' src/Makefile
+#  sed -i '206i export ARCH' src/Makefile
+#  sed -i '207i export CROSS_COMPILE' src/Makefile
+  (
+    cd src
+    make
+  )
 }
 
 makeinstall_target() {
