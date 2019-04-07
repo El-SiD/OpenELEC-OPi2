@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="mt7601u"
-PKG_VERSION="28c7601"
+PKG_VERSION="a1eeb1bdd02e78829d3ce71d344a4f3816405899"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

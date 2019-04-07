@@ -17,13 +17,13 @@
 ################################################################################
 
 PKG_NAME="RTL8812AU"
-PKG_VERSION="d3c7f0e"
+PKG_VERSION="edcd447de00568d963a32e47d68180c55ef89fb0"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
-PKG_SITE="https://github.com/Grawp/rtl8812au_rtl8821au"
-PKG_GIT_URL="https://github.com/Grawp/rtl8812au_rtl8821au.git"
-PKG_GIT_BRANCH="4.3.20"
+PKG_SITE="https://github.com/gordboy/rtl8812au"
+PKG_GIT_URL="https://github.com/gordboy/rtl8812au.git"
+PKG_GIT_BRANCH="master"
 PKG_DEPENDS_TARGET="toolchain linux"
 PKG_NEED_UNPACK="$LINUX_DEPENDS"
 PKG_PRIORITY="optional"
@@ -43,7 +43,8 @@ make_target() {
        ARCH=$TARGET_KERNEL_ARCH \
        KSRC=$(kernel_path) \
        CROSS_COMPILE=$TARGET_PREFIX \
-       CONFIG_POWER_SAVING=n
+       CONFIG_POWER_SAVING=n \
+       CONFIG_VHT_EXTRAS=n
 }
 
 makeinstall_target() {
