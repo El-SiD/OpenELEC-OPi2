@@ -164,9 +164,9 @@
     echo "### Starting debugging shell... type  exit  to quit ###"
 
     # show cursor
-    echo 0 > /sys/devices/virtual/graphics/fbcon/cursor_blink
+    echo 1 > /sys/devices/virtual/graphics/fbcon/cursor_blink
 
-    sh </dev/tty1 >/dev/tty1 2>&1
+    setsid cttyhack sh
   }
 
   error() {
