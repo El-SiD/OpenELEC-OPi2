@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="RTL8821CU"
-PKG_VERSION="25a19dd"
+PKG_VERSION="8ac1de7"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -44,7 +44,10 @@ make_target() {
        KSRC=$(kernel_path) \
        CROSS_COMPILE=$TARGET_PREFIX \
        CONFIG_POWER_SAVING=n \
-       CONFIG_RTW_DEBUG=y
+       CONFIG_RTW_DEBUG=y \
+       CONFIG_RTW_CFGVEDNOR_RSSIMONITOR=n \
+       CONFIG_RTW_CFGVENDOR_RANDOM_MAC_OUI=n \
+       CONFIG_XMIT_ACK=n
 }
 
 makeinstall_target() {
