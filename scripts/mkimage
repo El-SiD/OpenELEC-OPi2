@@ -237,7 +237,7 @@ fi # bootloader
 
 # create filesystem on part2
   echo "image: creating filesystem on part2..."
-  mke2fs -F -q -t ext4 -m 0 "$OE_TMP/part2.ext4"
+  mke2fs -F -q -t ext4 -m 0 -O ^metadata_csum "$OE_TMP/part2.ext4"
   tune2fs -U $UUID_STORAGE "$OE_TMP/part2.ext4" >"$SAVE_ERROR" 2>&1 || show_error
   e2fsck -n "$OE_TMP/part2.ext4" >"$SAVE_ERROR" 2>&1 || show_error
   sync
