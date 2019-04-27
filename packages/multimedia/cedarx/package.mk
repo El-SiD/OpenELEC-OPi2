@@ -17,12 +17,13 @@
 ################################################################################
 
 PKG_NAME="cedarx"
-PKG_VERSION="20150512"
+PKG_VERSION="f0fff74"
 PKG_REV="1"
 PKG_ARCH="arm"
 PKG_LICENSE="nonfree"
-PKG_SITE="http://www.allwinnertech.com/"
-PKG_URL="http://down.nu/packages/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_SITE="https://github.com/El-SiD/cedarx-20150512"
+PKG_GIT_URL="https://github.com/El-SiD/cedarx-20150512.git"
+PKG_GIT_BRANCH="master"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
 PKG_SECTION="multimedia"

@@ -17,13 +17,14 @@
 ################################################################################
 
 PKG_NAME="e2fsprogs"
-PKG_VERSION="1.43.3"
+PKG_VERSION="1.43.9"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://e2fsprogs.sourceforge.net/"
-PKG_URL="$SOURCEFORGE_SRC/$PKG_NAME/$PKG_NAME/1.42/$PKG_NAME-$PKG_VERSION.tar.gz"
-PKG_DEPENDS_TARGET="toolchain"
+PKG_URL="https://www.kernel.org/pub/linux/kernel/people/tytso/$PKG_NAME/v$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_DEPENDS_HOST="gcc:host"
+PKG_DEPENDS_TARGET="toolchain cxxtools:host"
 PKG_DEPENDS_INIT="toolchain"
 PKG_PRIORITY="optional"
 PKG_SECTION="tools"
@@ -31,7 +32,7 @@ PKG_SHORTDESC="e2fsprogs: Utilities for use with the ext2 filesystem"
 PKG_LONGDESC="The filesystem utilities for the EXT2 filesystem, including e2fsck, mke2fs, dumpe2fs, fsck, and others."
 PKG_IS_ADDON="no"
 
-PKG_AUTORECONF="yes"
+PKG_AUTORECONF="no"
 
 if [ "$HFSTOOLS" = "yes" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET diskdev_cmds"
@@ -48,8 +49,6 @@ PKG_CONFIGURE_OPTS_TARGET="BUILD_CC=$HOST_CC \
                            --enable-verbose-makecmds \
                            --enable-symlink-install \
                            --enable-symlink-build \
-                           --enable-compression \
-                           --enable-htree \
                            --disable-elf-shlibs \
                            --disable-bsd-shlibs \
                            --disable-profile \
@@ -67,6 +66,7 @@ PKG_CONFIGURE_OPTS_TARGET="BUILD_CC=$HOST_CC \
                            --disable-uuidd \
                            --disable-nls \
                            --disable-rpath \
+                           --disable-fuse2fs \
                            --with-gnu-ld"
 
 PKG_CONFIGURE_OPTS_INIT="$PKG_CONFIGURE_OPTS_TARGET"
@@ -77,7 +77,7 @@ pre_make_host() {
 }
 
 post_makeinstall_target() {
-  make -C lib/et DESTDIR=$SYSROOT_PREFIX install
+  make -C lib/et LIBMODE=644 DESTDIR=$SYSROOT_PREFIX install
 
   rm -rf $INSTALL/sbin/badblocks
   rm -rf $INSTALL/sbin/blkid
@@ -114,8 +114,8 @@ make_host() {
 }
 
 makeinstall_host() {
-  make -C lib/et DESTDIR=$(pwd)/.install install
-  make -C lib/ext2fs DESTDIR=$(pwd)/.install install
+  make -C lib/et DESTDIR=$(pwd)/.install LIBMODE=644 install
+  make -C lib/ext2fs DESTDIR=$(pwd)/.install LIBMODE=644 install
 
   rm -fr $(pwd)/.install/bin
   rm -fr $(pwd)/.install/usr/share

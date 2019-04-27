@@ -17,12 +17,13 @@
 ################################################################################
 
 PKG_NAME="sunxi-mali"
-PKG_VERSION="20160229"
+PKG_VERSION="4462714"
 PKG_REV="1"
 PKG_ARCH="arm"
 PKG_LICENSE="nonfree"
-PKG_SITE="https://github.com/WhiteWind/sunxi-mali-proprietary"
-PKG_URL="http://down.nu/packages/$PKG_NAME-$PKG_VERSION.tar.xz"
+PKG_SITE="https://github.com/El-SiD/opengl-sunxi-mali-20160229"
+PKG_GIT_URL="https://github.com/El-SiD/opengl-sunxi-mali-20160229.git"
+PKG_GIT_BRANCH="master"
 PKG_DEPENDS_TARGET="toolchain"
 PKG_PRIORITY="optional"
 PKG_SECTION="graphics"

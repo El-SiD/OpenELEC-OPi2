@@ -17,13 +17,13 @@
 ################################################################################
 
 PKG_NAME="bison"
-PKG_VERSION="3.0.4"
+PKG_VERSION="3.0.5"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.gnu.org/software/bison/"
 PKG_URL="http://ftp.gnu.org/gnu/bison/$PKG_NAME-$PKG_VERSION.tar.xz"
-PKG_DEPENDS_HOST="ccache:host"
+PKG_DEPENDS_HOST="ccache:host m4:host"
 PKG_PRIORITY="optional"
 PKG_SECTION="devel"
 PKG_SHORTDESC="bison: The GNU general-purpose parser generator"
